@@ -1,0 +1,142 @@
+/* student stream page css start */
+.stream-button {
+    padding: 20px 10px;
+}
+
+.tooltipicon {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipicon .tooltipicontext {
+    visibility: hidden;
+    background-color: black;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 100%;
+    margin-top: 5px;
+    /* left: 50%;
+    margin-left: -60px; */
+}
+
+.tooltipicon:hover .tooltipicontext {
+    visibility: visible;
+}
+
+.timeline.timeline-5 .timeline-item .timeline-label {
+    width: 100px;
+}
+
+.timeline.timeline-5:before {
+    left: 120px;
+}
+
+/* student stream page css end */
+/* class-time page css start*/
+.class-time .table td {
+    padding: 50px 20px !important;
+}
+
+/* class-time page css end*/
+/* result page css start*/
+.bal .timeline-label {
+    width: 130px !important;
+}
+
+.bal.timeline.timeline-5:before {
+    left: 150px !important;
+}
+
+/* result page css end*/
+/* classmate  page css start*/
+.classmate-body {
+    background: #f3f3f3;
+}
+
+/* classmate  page css end*/
+/* friends  page css start*/
+.friends-body {
+    background: url('../../media/img/1.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 70px 70px !important;
+}
+
+.friends-card-title {
+    color: white;
+}
+
+/* pre-advisinge page css start*/
+.pre-advising .table td {
+    /* padding: 30px 40px !important; */
+    height: 100px;
+    width: 140px;
+}
+
+.course-search {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.search-title-text {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.all-course ul {
+    font-size: 1.4rem;
+    list-style: none;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    overflow-y: scroll;
+    height: 41.5rem;
+    margin-top: 9px;
+    border-top: 1px solid #efefef;
+}
+
+/* .advising-course .all-course  ul li{
+  display: inline-block;
+  width: 33%;
+  background: #4CAF50;
+  text-align: center;
+  margin: 1rem .5rem;
+  padding: 2.2rem 1rem;
+} */
+.all-course ul li {
+    display: inline-block;
+    width: 33%;
+    background: rgb(0, 123, 255, 0.7);
+    
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 2.2rem 1rem;
+    text-align: center;
+    margin: 1rem .5rem;
+    border: 1px solid #007bff;
+}
+#tableBody td li{
+    vertical-align: middle;
+    list-style: none;
+    display: inline-block;    
+    background: rgb(253, 126, 20, 0.7);    
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    padding: 2rem 1.6rem;       
+    border: 1px solid #fd7e14;
+}
+
+/* pre-advising page css end*/

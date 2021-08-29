@@ -1,0 +1,346 @@
+
+
+//global variable
+let num_Of_questions = 0;
+let random = Math.random();
+
+// quiz question validation
+function validation() {
+
+    let check = false;
+    let checkans = false;
+
+    if (num_Of_questions == 0) {
+        document.getElementById("error").innerHTML = "Please add Questions";
+    } else {
+
+
+        for (i = 1; i <= num_Of_questions; i++) {
+            let boolCheck = true;
+
+            let name = "question" + i;
+            var x = document.getElementById(name);
+            if (x != null) {
+
+                var z = x.getElementsByTagName('textarea');
+                var y = x.getElementsByTagName('input');
+                if (z[0].value.length == 0) {
+                    z[0].style.border = "solid red";
+                    check = true;
+                } else {
+                    z[0].style.border = "";
+                }
+
+                for (j = 1; j < y.length; j += 2) {
+
+                    if (y[j].value.length == 0) {
+                        y[j].style.border = "solid red";
+                        check = true;
+                    } else {
+                        y[j].style.border = "";
+                    }
+                }
+
+
+
+
+                for (k = 0; k < y.length; k += 2) {
+                    if (y[k].checked == true) {
+                        boolCheck = false;
+                    }
+                }
+
+                if (boolCheck) {
+                    checkans = true;
+                }
+
+            }
+        }
+
+        var na = document.getElementById("name_quiz");
+        if (na.value.length == 0) {
+            na.style.border = "solid red";
+            check = true;
+        } else {
+            na.style.border = "";
+        }
+
+
+
+        if (check && checkans) {
+            document.getElementById("error").innerHTML = "Please fill all data in red rectangle And Add correct answer";
+        } else if (check) {
+            document.getElementById("error").innerHTML = "Please fill all data in red rectangle";
+        } else if (checkans) {
+            document.getElementById("error").innerHTML = "Please add correct answer in all Questions";
+        } else {
+            document.getElementById("error").innerHTML = "";
+            SaveData();
+        }
+
+
+
+
+
+    }
+}
+
+function add_multi_Answer(name_question) {
+
+    let num_question = document.getElementById(name_question);
+    let div_of_questions = num_question.getElementsByTagName("div")[0];
+    let num_Of_Answer = num_question.getElementsByTagName("p")[0].innerHTML;
+
+
+
+    var new_answer = div_of_questions.getElementsByTagName("div")[0];
+
+    var cln = new_answer.cloneNode(true);
+    cln.getElementsByTagName('input')[0].checked = false;
+    cln.getElementsByTagName('input')[1].value = "";
+
+    console.log(cln);
+    div_of_questions.appendChild(cln);
+
+
+    num_Of_Answer++;
+    console.log(num_Of_Answer);
+    num_question.getElementsByTagName("p")[0].innerHTML = num_Of_Answer;
+}
+
+function add_one_Answer(name_question) {
+    let num_question = document.getElementById(name_question);
+    let div_of_questions = num_question.getElementsByTagName("div")[0];
+    let num_Of_Answer = num_question.getElementsByTagName("p")[0].innerHTML;
+
+
+
+    var new_answer = div_of_questions.getElementsByTagName("div")[0];
+
+    var cln = new_answer.cloneNode(true);
+    cln.getElementsByTagName('input')[0].checked = false;
+    cln.getElementsByTagName('input')[1].value = "";
+
+    console.log(cln);
+    div_of_questions.appendChild(cln);
+
+
+    num_Of_Answer++;
+    console.log(num_Of_Answer);
+    num_question.getElementsByTagName("p")[0].innerHTML = num_Of_Answer;
+}
+
+function delete_answer(name_question) {
+    let num_question = document.getElementById(name_question);
+    let num_Of_Answer = num_question.getElementsByTagName("p")[0].innerHTML;
+    if (num_Of_Answer > 3) {
+        num_Of_Answer--;
+        console.log(num_Of_Answer);
+        num_question.getElementsByTagName("p")[0].innerHTML = num_Of_Answer;
+        return true;
+    }
+}
+
+function delete_one_answer(name_question) {
+    let num_question = document.getElementById(name_question);
+    let num_Of_Answer = num_question.getElementsByTagName("p")[0].innerHTML;
+    if (num_Of_Answer > 2) {
+        num_Of_Answer--;
+        console.log(num_Of_Answer);
+        num_question.getElementsByTagName("p")[0].innerHTML = num_Of_Answer;
+        return true;
+    }
+}
+
+//  question item minus when click the delete button
+function question_minus(){
+    num_Of_questions--;
+}
+
+//  MCQ question
+function add_multi_question() {
+
+    num_Of_questions++;
+    var str = "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question" + num_Of_questions + "\"><label for=\"uname\">Quistion : " + num_Of_questions + "(MCQ)</label><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove(); question_minus();\" style=\"float: right\">X</button><textarea class=\"form-control form-control-solid textA\" rows='3' name=\"text\" required></textarea><br /><p class=\"collapse\">3</p><div><div class=\"form-group form-check\"><input  type=\"checkbox\" class=\"form-radio input\" style=\"margin-right: 8px;\"><input  type=\"text\" class=\"form-control form-control-solid styleinput input\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" style=\"margin-left:10px\" onclick=\"if(delete_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input style=\"margin-right: 8px;\"  type=\"checkbox\" class=\"form-radio input\"><input  type=\"text\" style=\"width:30%;display:inline-block;\" class=\"form-control form-control-solid styleinput styleinput\"><button type=\"button\" style=\"margin-left:10px\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input style=\"margin-right: 8px;\"  type=\"checkbox\" class=\"form-radio input\"><input  type=\"text\" style=\"width:30%;display:inline-block;\" class=\"form-control form-control-solid styleinput styleinput input\"><button type=\"button\" style=\"margin-left:10px\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div></div><button type=\"button\" onclick=\"add_multi_Answer('question" + num_Of_questions + "')\" class=\"btn btn-info\" >Add another option</button></div>";
+
+
+    var child = document.createElement('div');
+    child.innerHTML = str;
+    document.getElementById('questions').appendChild(child);
+
+}
+
+// single question like true flase type question
+function add_one_question() {
+
+    num_Of_questions++;
+    // var str = "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question" + num_Of_questions + "\"><label for=\"uname\">Quistion : " + num_Of_questions + "</label><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove();\" style=\"float: right\">X</button><textarea class=\"form-control form-control-solid textA\" rows='3' name=\"text\" required></textarea><br /><p class=\"collapse\">3</p><div><div class=\"form-group form-check\"><input type=\"radio\" class=\"form-radio\" style=\"margin-right: 8px;\"><input value=\"True\" type=\"text\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" style=\"margin-left:10px\" onclick=\"if(delete_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input style=\"margin-right: 8px;\" type=\"radio\" class=\"form-radio\"><input value=\"False\" type=\"text\" style=\"width:30%;display:inline-block;\" class=\"form-control form-control-solid styleinput styleinput\"><button type=\"button\" style=\"margin-left:10px\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div></div></div>";
+
+    var str = "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question" + num_Of_questions + "\"><label for=\"uname\">Quistion : " + num_Of_questions + " (True/False)</label><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove(); question_minus();\" style=\"float: right\">X</button><textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required></textarea><br /><p class=\"collapse\">2</p><div><div class=\"form-group form-check\"><input id=\"input\" type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\" style=\"margin-right: 8px;\"><input id=\"input\" type=\"text\" value=\"True\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input id=\"input\" type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\"><input id=\"input\" value=\"False\" type=\"text\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div></div></div>";
+
+
+    var child = document.createElement('div');
+    child.innerHTML = str;
+    document.getElementById('questions').appendChild(child);
+}
+
+// Short question like answer in one word
+function add_oneword_question() {
+
+    num_Of_questions++;
+
+    // var str = "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question" + num_Of_questions + "\"><label for=\"uname\">Quistion : " + num_Of_questions + "</label><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove();\" style=\"float: right\">X</button><textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required></textarea><br /><p class=\"collapse\">2</p><div><div class=\"form-group form-check\"><input type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\" style=\"margin-right: 8px;\"><input type=\"text\" value=\"True\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\"><input value=\"False\" type=\"text\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div></div></div>";
+
+    var str=" "+
+    "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question"+num_Of_questions+"\">"+
+        "<label for=\"uname\">Quistion : " + num_Of_questions + " (Answer in one word)</label>"+
+        "<button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove(); question_minus();\" style=\"float: right\">X</button>"+
+        "<textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required spellcheck=\"false\"></textarea><br>"+
+        "<input style=\" visibility:hidden; position:absoulute; margin-right: 8px;\" checked type=\"checkbox\" class=\"form-radio input\">"+
+        "<input style=\" visibility:hidden; position:absoulute; \" value=\"test\" type=\"text\" style=\"width:30%;display:inline-block;\" class=\"form-control form-control-solid styleinput styleinput input\">"+
+    "</div> ";
+
+    var child = document.createElement('div');
+    child.innerHTML = str;
+    document.getElementById('questions').appendChild(child);
+}
+// SHort question
+function add_short_question() {
+
+    num_Of_questions++;
+
+    // var str = "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question" + num_Of_questions + "\"><label for=\"uname\">Quistion : " + num_Of_questions + "</label><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove();\" style=\"float: right\">X</button><textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required></textarea><br /><p class=\"collapse\">2</p><div><div class=\"form-group form-check\"><input type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\" style=\"margin-right: 8px;\"><input type=\"text\" value=\"True\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\"><input value=\"False\" type=\"text\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div></div></div>";
+
+    var str=" "+
+    "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question"+num_Of_questions+"\">"+
+        "<label for=\"uname\">Quistion : " + num_Of_questions + " (Answer in one word)</label>"+
+        "<button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove(); question_minus();\" style=\"float: right\">X</button>"+
+        "<textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required spellcheck=\"false\"></textarea><br>"+
+        "<input style=\" visibility:hidden; position:absoulute; margin-right: 8px;\" checked type=\"checkbox\" class=\"form-radio input\">"+
+        "<input style=\" visibility:hidden; position:absoulute; \" value=\"test\" type=\"text\" style=\"width:30%;display:inline-block;\" class=\"form-control form-control-solid styleinput styleinput input\">"+
+    "</div> ";
+
+    var child = document.createElement('div');
+    child.innerHTML = str;
+    document.getElementById('questions').appendChild(child);
+}
+// descriptive question
+function add_descriptive_question() {
+
+    num_Of_questions++;
+
+    // var str = "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question" + num_Of_questions + "\"><label for=\"uname\">Quistion : " + num_Of_questions + "</label><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove();\" style=\"float: right\">X</button><textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required></textarea><br /><p class=\"collapse\">2</p><div><div class=\"form-group form-check\"><input type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\" style=\"margin-right: 8px;\"><input type=\"text\" value=\"True\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div><div class=\"form-group form-check\"><input type=\"radio\" name=\"q" + num_Of_questions + "\" class=\"form-radio\"><input value=\"False\" type=\"text\" class=\"form-control form-control-solid styleinput\" style=\"width:30%;display:inline-block;\"><button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"if(delete_one_answer('question" + num_Of_questions + "')){this.parentNode.remove();}\">X</button></div></div></div>";
+
+    var str=" "+
+    "<div style=\"margin-bottom: 20px;border-bottom: 2px solid #f1f1f1;padding-bottom: 30px !important; \" class=\"p-2 flex-fill text-center Qusistion\" id=\"question"+num_Of_questions+"\">"+
+        "<label for=\"uname\">Quistion : " + num_Of_questions + " (Answer in one word)</label>"+
+        "<button type=\"button\" class=\"closeButton btn btn-danger\" onclick=\"this.parentNode.remove(); question_minus();\" style=\"float: right\">X</button>"+
+        "<textarea class=\"form-control form-control-solid textA\" rows=\"3\" name=\"text\" required spellcheck=\"false\"></textarea><br>"+
+        "<input style=\" visibility:hidden; position:absoulute; margin-right: 8px;\" checked type=\"checkbox\" class=\"form-radio input\">"+
+        "<input style=\" visibility:hidden; position:absoulute; \" value=\"test\" type=\"text\" style=\"width:30%;display:inline-block;\" class=\"form-control form-control-solid styleinput styleinput input\">"+
+    "</div> ";
+
+    var child = document.createElement('div');
+    child.innerHTML = str;
+    document.getElementById('questions').appendChild(child);
+}
+
+
+function SaveData() {
+    var number_of_Q = 0;
+
+    var access = makeid();
+
+
+
+
+
+
+    for (i = 1; i <= num_Of_questions; i++) {
+        let correct = new Array();
+        let all = new Array();
+
+        let name = "question" + i;
+        var x = document.getElementById(name);
+        var exam_name =$('#name_quiz').val();
+        if (x != null) {
+            number_of_Q++;
+            var text_Question = x.getElementsByTagName('textarea')[0].value;
+            var y = x.getElementsByTagName('input');
+
+            for (k = 0; k < y.length; k += 2) {
+                if (y[k].checked == true) {
+                    correct.push(y[k + 1].value);
+                }
+                all.push(y[k + 1].value);
+            }
+
+            // console.log(text_Question);
+            // console.log(all);
+            // console.log(correct);
+
+
+            var n = "Question" + number_of_Q;
+
+
+
+                  $.ajax({
+                    type: 'POST',
+                    url: $('#url').val(),
+                    data: {
+                      '_token': $('input[name=_token]').val(),
+                      'exam_name': exam_name,
+                      'q_name': text_Question,
+                      'q_answer': correct,
+                      'q_option': all,
+                      'random': random,
+
+
+                    },
+                    dataType: 'JSON',
+
+                    success: function(data) {
+
+                      Swal.fire({
+                        title: "Success!",
+                        text: "Exam Created Succesfully!",
+                        icon: "success",
+                        buttonsStyling: false,
+                        confirmButtonText: "Close!",
+                        customClass: {
+                          confirmButton: "btn btn-primary"
+                        }
+
+                      });
+                    }
+                  });
+
+
+
+
+
+
+        }
+    }
+
+
+    // document.getElementById("b1").style.display = "none";
+    // document.getElementById("b2").style.display = "none";
+    // document.getElementById("b3").style.display = "none";
+
+    // var cd = "<h1>The Access Code is :  " + access + "</h1><br><button class=\"btn btn-primary\" onclick=\"window.location.href = 'profile.html';\" style=\"width: 40%;\">go to profile</button>";
+
+    // document.getElementById("questions").innerHTML = cd;
+    return window.location.replace("/exam");
+
+}
+
+
+function makeid() {
+    var result = '';
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for (var i = 0; i < 10; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+}
