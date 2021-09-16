@@ -24,3 +24,5 @@ Route::Resource('/personal-information', 'personalInformation');
 Route::Resource('/user', 'userController');
 Route::Resource('/supplier', 'supplierController');
 Route::Resource('/product', 'productController');
+Route::Resource('/search', 'search');
+Route::Resource('/compare', 'compareController');

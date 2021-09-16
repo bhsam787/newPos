@@ -213,16 +213,25 @@
                             </li>
 
                             <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
-                                <a href="" class="menu-link menu-toggle">
+                                <a href="{{ route('search.index') }}" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
                                     </i>
-                                    <span class="menu-text">Assigned Course</span>
+                                    <span class="menu-text">Search</span>
+                                </a>
+
+                            </li>
+                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                                <a href="{{ route('compare.index') }}" class="menu-link menu-toggle">
+                                    <i class="menu-bullet menu-bullet-line">
+                                        <span></span>
+                                    </i>
+                                    <span class="menu-text">Compare Search</span>
                                 </a>
 
                             </li>
 
-                            <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                            {{-- <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                                 <a href="faculty-class-time" class="menu-link menu-toggle">
                                     <i class="menu-bullet menu-bullet-line">
                                         <span></span>
@@ -248,7 +257,7 @@
                                     <span class="menu-text">Course Resource</span>
                                 </a>
 
-                            </li>
+                            </li> --}}
 
 
 
@@ -260,7 +269,7 @@
                 {{-- individual menu area  end--}}
 
                 {{-- individual menu area  start--}}
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                {{-- <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:{{ asset('assets/media/svg/icons/Layout/Layout-4-blocks.svg') }}-->
@@ -383,18 +392,18 @@
                         </ul>
                     </div>
                 </li>
-                </li>
+                </li> --}}
                 {{-- individual menu area  end--}}
 
                 {{-- menu tile for individual area  start--}}
-                <li class="menu-section">
+                {{-- <li class="menu-section">
                     <h4 class="menu-text">Additional</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
+                </li> --}}
                 {{-- menu tile for individual area  end--}}
 
                 {{-- individual menu area  start--}}
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                {{-- <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:{{ asset('assets/media/svg/icons/Layout/Layout-4-blocks.svg') }}-->
@@ -447,18 +456,18 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 {{-- individual menu area  end--}}
 
                 {{-- menu tile for individual area  start--}}
-                <li class="menu-section">
+                {{-- <li class="menu-section">
                     <h4 class="menu-text">Course Selector</h4>
                     <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
-                </li>
+                </li> --}}
                 {{-- menu tile for individual area  end--}}
 
                 {{-- individual menu area  start--}}
-                <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
+                {{-- <li class="menu-item menu-item-submenu" aria-haspopup="true" data-menu-toggle="hover">
                     <a href="javascript:;" class="menu-link menu-toggle">
                         <span class="svg-icon menu-icon">
                             <!--begin::Svg Icon | path:{{ asset('assets/media/svg/icons/Layout/Layout-4-blocks.svg') }}-->
@@ -512,7 +521,7 @@
 
                         </ul>
                     </div>
-                </li>
+                </li> --}}
                 {{-- individual menu area  end--}}
 
 
